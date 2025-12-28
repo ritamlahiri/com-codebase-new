@@ -7,6 +7,8 @@ import java.util.Set;
 //Two pointer use cases = { Array and Linked List related questions
 // ,Sorted array,remove duplicate,merge array,detect cycle, pair or triplet answers}
 public class TwoPointerAlgorithm {
+
+    // rotate and array by k steps
     public void rotate(int[] nums, int k) {
         if(k>nums.length) return ;
             int i=0;
@@ -25,6 +27,8 @@ public class TwoPointerAlgorithm {
               System.out.print(nums[y]+" ");
           }
     }
+
+    // Two sum -> find the sum of 2 elements with a target
     public void twoSum(){
         int[] arr= {88,4,1,22,7,11,2,15};
         int start=0;
@@ -44,7 +48,7 @@ public class TwoPointerAlgorithm {
         }
     }
 
-    // remove duplicates from sorted array
+    // Remove duplicates from sorted array
     public int[] removeDuplicateNumbers(int[] nums) {
        // test array : 2,2,4,4,4,9,9,9,9,9,11,11
         int first =0;
