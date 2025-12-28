@@ -44,27 +44,27 @@ public class TwoPointerAlgorithm {
         }
     }
 
+    // remove duplicates from sorted array
+    public int[] removeDuplicateNumbers(int[] nums) {
+       // test array : 2,2,4,4,4,9,9,9,9,9,11,11
+        int first =0;
+        int second = first+ 1;
+        int result[] = new int[nums.length];
+        result[0]= nums[first];
+        int resultCount =1;
 
-    public void twoSum(int[] numbers, int target)
-    {
-        int[] result= new int[2];
-        int start=0;
-        int end= numbers.length-1;
-        Arrays.sort(numbers);
-        while(start<end){
-            if((numbers[start]+numbers[end])<target){
-                start++;
+        while(second<nums.length){
+            if(nums[second]!=nums[first])
+            {
+                result[resultCount++]=nums[second];
+                first=second;
+                second++;
             }
-            else if((numbers[start]+numbers[end])>target){
-                end--;
-            }else{  if(start==0){
-                result[0]= start+1;
-                result[1]= end+1;
-            } else{
-                result[0]=start;
-            }
-                result[1]= end;
+            else{
+                second++;
             }
         }
+        return result;
     }
+
 }
