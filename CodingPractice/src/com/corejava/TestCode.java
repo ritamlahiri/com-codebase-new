@@ -12,10 +12,11 @@ import java.util.stream.Collectors;
 
 public class TestCode {
     public static void main(String[] args) {
-        /*TwoPointerAlgorithm twoPointerAlgorithm
+        // first test commit
+        TwoPointerAlgorithm twoPointerAlgorithm
                 = new TwoPointerAlgorithm();
         int[] nums={11,3,13,6,99};
-        twoPointerAlgorithm.rotate(nums,2);*/
+        twoPointerAlgorithm.rotate(nums,2);
     }
 
 }
