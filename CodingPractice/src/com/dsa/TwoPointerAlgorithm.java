@@ -111,4 +111,86 @@ public class TwoPointerAlgorithm {
 
     }
 
+    public void squareOfSortedArrayinSortedOrderWithNegatives(int[] arr){
+
+        int pos=0; int neg=0; int i=0;
+        while(i<arr.length){
+            if(arr[i]<0) neg++;
+            else pos++;
+            i++;
+        }
+        int[] posArray = new int[pos];
+        int[] negArray = new int[neg];
+
+        i=0; int m=0; int n=0;
+        while(i<arr.length){
+            if(arr[i]<0) {
+                negArray[m]=arr[i];
+                m++;
+            }
+            else {
+                posArray[n]=arr[i];
+                n++;
+            }
+            i++;
+        }
+        i=0;
+        while(i<negArray.length){
+            negArray[i] = negArray[i]*negArray[i];
+            i++;
+        }
+        i=0;
+
+        int start = 0;
+        int end = negArray.length-1;
+        int temp = 0;
+
+        while(start<end)
+        {
+            temp =negArray[start];
+            negArray[start] = negArray[end];
+            negArray[end]=temp;
+            start++;end--;
+        }
+
+        while(i<posArray.length){
+            posArray[i]=posArray[i]*posArray[i];
+            i++;
+        }
+        // merge two arrays
+
+        int posArrayCounter =0;
+        int negArrayCounter = 0;
+        int[] mergedArray = new int[posArray.length+negArray.length];
+
+        int mergeArrayCounter = 0 ;
+        while((posArrayCounter<posArray.length)&&(negArrayCounter<negArray.length)){
+           if(posArray[posArrayCounter]<negArray[negArrayCounter]){
+               mergedArray[mergeArrayCounter] = posArray[posArrayCounter];
+               posArrayCounter++;
+           }else{
+               mergedArray[mergeArrayCounter] =negArray[negArrayCounter];
+               negArrayCounter++;
+           }
+            mergeArrayCounter++;
+        }
+        int x =0 ;
+
+        if(posArrayCounter!=posArray.length){
+            while(posArrayCounter<posArray.length){
+                mergedArray[mergeArrayCounter] = posArray[posArrayCounter];
+                posArrayCounter++;
+            }
+        }else{
+            while(negArrayCounter<negArray.length){
+                mergedArray[mergeArrayCounter] = negArray[negArrayCounter];
+                negArrayCounter++;
+            }
+        }
+        int b=0;
+        while(b< mergedArray.length){
+            System.out.print(mergedArray[b]+" ");
+            b++;
+        }
+    }
 }
