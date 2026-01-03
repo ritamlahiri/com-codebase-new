@@ -56,19 +56,59 @@ public class TwoPointerAlgorithm {
         int result[] = new int[nums.length];
         result[0]= nums[first];
         int resultCount =1;
-
+        int uniqueElementCounter =1;
         while(second<nums.length){
             if(nums[second]!=nums[first])
             {
                 result[resultCount++]=nums[second];
                 first=second;
                 second++;
+                uniqueElementCounter++;
             }
             else{
                 second++;
             }
         }
+        System.out.println("Number of unique elements :"+uniqueElementCounter);
         return result;
+    }
+
+    public void mergeSortedArrayAndReturnResultantArray(int[] arr1, int[] arr2){
+        int firstArrayCounter =0 ;
+        int secondArrayCounter =0;
+        int[] resultantArray = new int[arr1.length+arr2.length];
+
+        int resultCounter =0;
+        while((firstArrayCounter<arr1.length)&&(secondArrayCounter<arr2.length)){
+            if(arr1[firstArrayCounter]<arr2[secondArrayCounter]){
+                resultantArray[resultCounter]= arr1[firstArrayCounter] ;
+                firstArrayCounter++;
+            }
+            else{
+                resultantArray[resultCounter]= arr2[secondArrayCounter] ;
+                secondArrayCounter++;
+            }
+            resultCounter++;
+        }
+
+        if(firstArrayCounter>secondArrayCounter){
+            while(secondArrayCounter<arr2.length){
+                resultantArray[resultCounter]= arr2[secondArrayCounter];
+                secondArrayCounter++;
+                resultCounter++;
+            }
+        }else{
+            while(firstArrayCounter<arr1.length){
+                resultantArray[resultCounter]= arr1[firstArrayCounter];
+                firstArrayCounter++;
+                resultCounter++;
+            }
+        }
+
+        for(int k=0;k< resultantArray.length;k++){
+            System.out.print(resultantArray[k]+" ");
+        }
+
     }
 
 }
