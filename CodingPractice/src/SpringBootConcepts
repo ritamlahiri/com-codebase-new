@@ -1,0 +1,53 @@
+******************************************************************************
+1. Maven Concepts :
+******************************************************************************
+- Build tool - project management tool
+- dependency resolution
+- Uses pom.xml
+
+- Build LIFECYCLE
+
+ -> Validate project Structure
+ -> Compile Code
+ -> Junit Test cases run ->
+ -> Package compiled code to jar
+ -> verify the package
+ -> install the package in local repo
+ -> deploy package in remote repo
+
+
+ ***********************************************************************************
+ SPRING BOOT ANNOTATIONS
+ ***********************************************************************************
+
+@Value - inject property from application.properties file to Java variable in a code
+
+Problems with @Value
+ - multiple configs and huge number of @Value calls
+ - No way to validate for example @Value("${password}"), we cant validate
+   the length of password etc
+
+@ConfiguationProperties - inject property to Java Object not variable
+It binds configurations with the bean.
+
+For Validation - add @Validated annotation on the @ConfigurationProperties class
+
+Example :
+
+@Component
+@ConfiguationProperties(prefix ="user")
+@Validated
+public class UserConfig {
+
+    @NotBlank("User Name should not be blank")
+    private String name ;
+
+    @Min("User age should be above 18 years")
+    private int age;
+}
+
+application.properties file :
+
+user.name="test"
+user.age=13
+
