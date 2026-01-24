@@ -1,5 +1,5 @@
 ******************************************************************************
-1. Maven Concepts :
+1. MAVEN CONCEPTS :
 ******************************************************************************
 - Build tool - project management tool
 - dependency resolution
@@ -35,7 +35,7 @@ For Validation - add @Validated annotation on the @ConfigurationProperties class
 Example :
 
 @Component
-@ConfiguationProperties(prefix ="user")
+@ConfigurationProperties(prefix ="user")
 @Validated
 public class UserConfig {
 
@@ -51,3 +51,44 @@ application.properties file :
 user.name="test"
 user.age=13
 
+***********************************************************************************
+ SPRING BOOT ACTUATOR
+***********************************************************************************
+
+spring-boot-starter-actuator
+management.endpoints.web.exposure.include =*
+
+/health , /metrics etc
+
+/metrics  -> jvm.memory.used , jvm.gc.pause , jvm.thread.live , http.server.requests
+
+Restricted endpoints  :
+
+/shutdown , /heapdump
+
+@Endpoint(id ="custom-endpoint")
+@ReadOperation
+
+// For example
+
+    @Component
+    @Endpoint("/my-custom-endpoint")
+    public class MyCustomStatsEndpoint {
+
+    }
+
+***********************************************************************************
+ SPRING BOOT FILTERS AND INTERCEPTORS
+***********************************************************************************
+
+Filters  -  intercepts the http request , response before reaching to servlet
+
+
+Interceptors  -  intercepts the http request , response before reaching to controller
+                 and after servlet
+
+
+ FLOW :
+
+ REQUEST  -> SERVLET CONTAINER/TOMCAT -> FILTER CHAIN -> DISPATCHER SERVLET
+         ->  INTERCEPTOR -> CONTROLLER 
